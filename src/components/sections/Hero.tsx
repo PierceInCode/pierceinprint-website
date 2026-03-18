@@ -83,7 +83,7 @@ export default function Hero() {
             ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
           `}
         >
-          Matthew Pierce
+          Matthew & Rachel Pierce
         </h1>
 
         {/* Tagline */}
@@ -94,7 +94,7 @@ export default function Hero() {
             ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
           `}
         >
-          Children's book author. Sanibel Island, Florida.
+          Children's book authors. Sanibel Island, Florida.
         </p>
 
         {/* Welcome paragraph */}
@@ -105,7 +105,7 @@ export default function Hero() {
             ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
           `}
         >
-          Stories of flamingos, sea turtles, and the wild beauty of Southwest Florida —
+          Stories of flamingos, sea turtles, and the wild beauty of Southwest Florida, 
           where bravery blooms in mangrove forests and every creature has something to teach us.
         </p>
 
@@ -138,7 +138,7 @@ export default function Hero() {
               transition-all duration-200
             "
           >
-            About Matthew
+            Meet the Authors
           </a>
         </div>
       </div>

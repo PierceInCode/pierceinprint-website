@@ -37,7 +37,7 @@ export default function Header() {
             scrolled ? 'text-ocean-700' : 'text-white drop-shadow'
           }`}
         >
-          Matthew Pierce
+          Matthew & Rachel Pierce
         </a>
 
         {/* Desktop Nav */}

@@ -3,6 +3,9 @@
 // To add a new book, append an entry to the `books` array.
 // ============================================================
 
+import coverTheLostFlamingo from '../assets/covers/coverTheLostFlamingo.png';
+import coverByTheSeaTurtleNest from '../assets/covers/coverByTheSeaTurtleNest.png';
+
 export interface Book {
   id: string;
   title: string;
@@ -13,22 +16,20 @@ export interface Book {
   ageRange: string;
   pubDate: string;
   description: string;
-  /** Primary Amazon link (Kindle or paperback) */
+  /** Primary buy link (Amazon, publisher store, etc.) */
   amazonLink: string;
   /** Optional separate paperback link if different from amazonLink */
   amazonPaperbackLink?: string;
   /** Alt text for the cover image */
   coverAlt: string;
-  /**
-   * Path to the cover image relative to /src/assets/.
-   * REPLACE WITH ACTUAL FILE: e.g. '/src/assets/covers/lost-flamingo.jpg'
-   * Leave as empty string to show the placeholder.
-   */
+  /** Imported cover image asset */
   coverImage: string;
-  /** Show a "Coming Soon" badge on the card */
+  /** Show a badge overlaid on the cover */
   comingSoon?: boolean;
-  /** Custom label for the Coming Soon badge */
+  /** Label for the badge overlaid on the cover */
   comingSoonLabel?: string;
+  /** Custom label for the buy button (defaults to "Order on Amazon") */
+  buyButtonLabel?: string;
 }
 
 export const books: Book[] = [
@@ -45,25 +46,22 @@ export const books: Book[] = [
       'When a fierce storm sweeps across the gulf, one young flamingo is torn from his family and carried far across Florida\'s wild coast to Sanibel Island. Alone at the Sanibel Island Lighthouse, he must find the courage to journey home through mangrove forests, past the famous J.N. "Ding" Darling Wildlife Refuge, and across paths guarded by a lurking bobcat. Along the way, he discovers that asking for help is the bravest thing you can do — as a cast of Florida\'s most remarkable animals guide him on his adventure. Features 15+ real flamingo facts woven into the story, and stunning watercolor paintings of Florida\'s coastal landscapes.',
     amazonLink: 'https://www.amazon.com/Lost-Flamingo-Adventure-Floridas-Flamingos-ebook/dp/B0GRX2CX9K',
     coverAlt: 'The Lost Flamingo book cover',
-    // REPLACE WITH ACTUAL IMAGE: place cover file in src/assets/covers/ and update this path
-    coverImage: '',
+    coverImage: coverTheLostFlamingo,
   },
   {
     id: 'by-the-sea-turtles-nest',
     title: 'By the Sea Turtle\'s Nest',
+    subtitle: 'A hatchling\'s journey from the nest to the open sea and beyond.',
     author: 'Matthew Pierce',
     illustrator: 'Rachel Pierce',
     publisher: 'Sanibel Lighthouse Press',
-    ageRange: '4–8 years',
-    pubDate: 'Previously published',
+    ageRange: '0–4 years',
+    pubDate: 'October 2023',
     description:
-      'A gentle coastal story celebrating the wonder of sea turtle nesting season on Sanibel Island. Illustrated with beautiful watercolor paintings by Rachel Pierce.',
-    // REPLACE WITH ACTUAL AMAZON LINK when the book is live on Amazon
-    amazonLink: '#',
+      'A gentle coastal story celebrating the wonder of sea turtle nesting season on Sanibel Island. Illustrated with beautiful paintings by Rachel Pierce.',
+    amazonLink: 'https://www.byrachelpierce.com/online-store/BOOKS-c159385271',
     coverAlt: 'By the Sea Turtle\'s Nest book cover',
-    // REPLACE WITH ACTUAL IMAGE: place cover file in src/assets/covers/ and update this path
-    coverImage: '',
-    comingSoon: true,
-    comingSoonLabel: 'Coming Soon on Amazon',
+    coverImage: coverByTheSeaTurtleNest,
+    buyButtonLabel: 'Order at ByRachelPierce.com',
   },
 ];

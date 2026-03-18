@@ -42,7 +42,7 @@ export default function Connect() {
             id="connect-heading"
             className="font-serif text-4xl md:text-5xl font-bold text-ocean-700 mb-4"
           >
-            Find Matthew Online
+            Find Matthew & Rachel Online
           </h2>
           <p className="font-sans text-driftwood-500 text-base leading-relaxed">
             Follow along for updates on new books, events, and behind-the-scenes from

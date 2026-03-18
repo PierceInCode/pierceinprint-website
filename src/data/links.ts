@@ -44,10 +44,8 @@ export const socialLinks: SocialLink[] = [
   {
     id: 'goodreads',
     label: 'Goodreads',
-    // REPLACE WITH ACTUAL GOODREADS URL when profile is created
-    url: '#',
+    url: 'https://www.goodreads.com/author/show/69368040.Matthew_Pierce',
     icon: 'goodreads',
-    comingSoon: true,
     external: true,
   },
 ];

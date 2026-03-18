@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import { RACHEL_ART_URL } from '../../data/links';
+import rachelHeadshot from '../../assets/images/rachelHeadshot.png';
+import matthewHeadshot from '../../assets/images/matthewHeadshot.jpg';
 
 // PlaceholderImage for author photos — circular crop
 function AuthorPhoto({ alt }: { alt: string }) {
@@ -88,9 +90,13 @@ export default function About() {
 
           {/* Matthew Pierce */}
           <div className="flex flex-col items-center text-center reveal reveal-delay-1">
-            {/* Photo placeholder */}
+            {/* Photo */}
             <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mb-6 flex-shrink-0">
-              <AuthorPhoto alt="Matthew Pierce author photo" />
+              <img
+                src={matthewHeadshot}
+                alt="Matthew Pierce author photo"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
 
             <h3 className="font-serif text-2xl font-bold text-ocean-700 mb-1">Matthew Pierce</h3>
@@ -104,16 +110,20 @@ export default function About() {
             </p>
             <p className="font-sans text-driftwood-600 leading-relaxed text-base mt-3">
               His stories weave real natural history and wildlife facts into adventures that spark curiosity
-              about the natural world — with themes of bravery, family, perseverance, and the wild beauty
+              about the natural world with themes of bravery, family, perseverance, and the wild beauty
               that surrounds us.
             </p>
           </div>
 
           {/* Rachel Pierce */}
           <div className="flex flex-col items-center text-center reveal reveal-delay-2">
-            {/* Photo placeholder */}
+            {/* Photo */}
             <div className="w-40 h-40 rounded-full overflow-hidden shadow-lg mb-6 flex-shrink-0">
-              <AuthorPhoto alt="Rachel Pierce illustrator photo" />
+              <img
+                src={rachelHeadshot}
+                alt="Rachel Pierce illustrator photo"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
 
             <h3 className="font-serif text-2xl font-bold text-ocean-700 mb-1">Rachel Pierce</h3>
@@ -123,7 +133,7 @@ export default function About() {
             <p className="font-sans text-driftwood-600 leading-relaxed text-base">
               Rachel Pierce is a fine artist and gallery owner on Sanibel Island, Florida. A former TV news
               anchor turned full-time artist, she creates vibrant coastal paintings in oil, acrylic, and
-              watercolor — featuring Florida wildlife, sea turtles, flamingos, shorebirds, and the landscapes
+              watercolor, featuring Florida wildlife, sea turtles, flamingos, shorebirds, and the landscapes
               she calls home.
             </p>
             <p className="font-sans text-driftwood-600 leading-relaxed text-base mt-3">
@@ -156,8 +166,8 @@ export default function About() {
         <div className="reveal mt-16 rounded-2xl bg-ocean-600/5 border border-ocean-600/15 p-8 text-center">
           <p className="font-serif text-xl text-ocean-700 mb-2">Sanibel Lighthouse Press</p>
           <p className="font-sans text-driftwood-500 text-base leading-relaxed max-w-lg mx-auto">
-            Matthew and Rachel publish together under Sanibel Lighthouse Press —
-            a small independent press dedicated to stories that celebrate the natural wonders of Southwest Florida.
+            Matthew and Rachel publish together under Sanibel Lighthouse Press, 
+            a small independent press dedicated to shining light on stories that celebrate the natural wonders of Southwest Florida.
           </p>
         </div>
       </div>

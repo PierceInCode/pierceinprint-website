@@ -31,10 +31,16 @@ export default function BookCard({ book }: BookCardProps) {
     ">
       {/* Book Cover */}
       <div className="relative p-6 pb-0 flex justify-center">
-        {/* Coming Soon badge overlaid on cover */}
+        {/* Badge overlaid on cover — links to buy page when live */}
         {book.comingSoon && book.comingSoonLabel && (
           <div className="absolute top-8 right-8 z-10">
-            <Badge label={book.comingSoonLabel} variant="coral" />
+            {amazonIsLive ? (
+              <a href={book.amazonLink} target="_blank" rel="noopener noreferrer">
+                <Badge label={book.comingSoonLabel} variant="coral" />
+              </a>
+            ) : (
+              <Badge label={book.comingSoonLabel} variant="coral" />
+            )}
           </div>
         )}
         <div className="w-48 drop-shadow-xl">
@@ -106,7 +112,7 @@ export default function BookCard({ book }: BookCardProps) {
                 shadow-sm hover:shadow-md
               "
             >
-              Order on Amazon
+              {book.buyButtonLabel ?? 'Order on Amazon'}
             </a>
           ) : (
             <div className="

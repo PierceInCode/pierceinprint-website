@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           {/* Left: branding */}
           <div className="text-center md:text-left">
-            <p className="font-serif text-lg font-semibold text-white">Matthew Pierce</p>
+            <p className="font-serif text-lg font-semibold text-white">Matthew & Rachel Pierce</p>
             <p className="text-sm text-white/60 mt-0.5">Sanibel Lighthouse Press</p>
           </div>
 
@@ -60,7 +60,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-white/10 mt-8 pt-6 text-center">
           <p className="text-xs text-white/40">
-            © 2026 Matthew Pierce · Sanibel Lighthouse Press · Illustrated by{' '}
+            © 2026 Matthew & Rachel Pierce · Sanibel Lighthouse Press · Illustrated by{' '}
             <a
               href={RACHEL_ART_URL}
               target="_blank"
