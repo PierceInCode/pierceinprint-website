@@ -2,8 +2,10 @@
 // Returns the full subscriber list as JSON.
 // Protected by a secret key stored in the ADMIN_SECRET environment variable.
 
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+const redis = Redis.fromEnv();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'GET') {
@@ -18,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Fetch all subscribers: { email: timestamp, ... }
-  const subscribers = await kv.hgetall<Record<string, string>>('subscribers');
+  const subscribers = await redis.hgetall<Record<string, string>>('subscribers');
 
   return res.status(200).json({
     count: subscribers ? Object.keys(subscribers).length : 0,

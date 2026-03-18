@@ -5,43 +5,6 @@ import { RACHEL_ART_URL } from '../../data/links';
 import rachelHeadshot from '../../assets/images/rachelHeadshot.png';
 import matthewHeadshot from '../../assets/images/matthewHeadshot.jpg';
 
-// PlaceholderImage for author photos — circular crop
-function AuthorPhoto({ alt }: { alt: string }) {
-  return (
-    /*
-      REPLACE WITH ACTUAL PHOTO:
-      Replace this <div> with:
-      <img src="/src/assets/photos/matthew-pierce.jpg" alt={alt} className="w-full h-full object-cover" />
-      inside the outer wrapper.
-    */
-    <div
-      role="img"
-      aria-label={alt}
-      data-placeholder="REPLACE WITH ACTUAL PHOTO"
-      className="
-        w-full h-full
-        bg-gradient-to-br from-ocean-400/30 via-sand-200 to-coral-400/20
-        flex flex-col items-center justify-center
-        border-2 border-dashed border-ocean-400/20
-      "
-    >
-      <svg
-        width="40"
-        height="40"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className="text-ocean-600/40 mb-1"
-        aria-hidden="true"
-      >
-        <circle cx="12" cy="8" r="4"/>
-        <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
-      </svg>
-      <span className="text-xs text-ocean-600/40 text-center px-3">{alt}</span>
-    </div>
-  );
-}
 
 export default function About() {
   const sectionRef = useRef<HTMLDivElement>(null);

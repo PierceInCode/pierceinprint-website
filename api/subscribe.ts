@@ -1,9 +1,11 @@
 // api/subscribe.ts — POST /api/subscribe
-// Validates an email address and stores it in Vercel KV (Redis).
+// Validates an email address and stores it in Upstash Redis.
 // Prevents duplicate signups.
 
-import { kv } from '@vercel/kv';
+import { Redis } from '@upstash/redis';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
+
+const redis = Redis.fromEnv();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // CORS headers — required for local `vercel dev`
@@ -28,13 +30,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const normalized = email.toLowerCase().trim();
 
   // Check for duplicate
-  const existing = await kv.hexists('subscribers', normalized);
+  const existing = await redis.hexists('subscribers', normalized);
   if (existing) {
     return res.status(200).json({ status: 'already_subscribed' });
   }
 
   // Store email with timestamp
-  await kv.hset('subscribers', { [normalized]: new Date().toISOString() });
+  await redis.hset('subscribers', { [normalized]: new Date().toISOString() });
 
   return res.status(200).json({ status: 'subscribed' });
 }
