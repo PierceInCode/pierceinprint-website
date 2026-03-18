@@ -1,11 +1,15 @@
 // Connect.tsx — Social links and newsletter section
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { socialLinks } from '../../data/links';
 import SocialButton from '../ui/SocialButton';
 
+type SubscribeStatus = 'idle' | 'loading' | 'success' | 'already_subscribed' | 'error';
+
 export default function Connect() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [email, setEmail] = useState('');
+  const [status, setStatus] = useState<SubscribeStatus>('idle');
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,11 +63,7 @@ export default function Connect() {
           ))}
         </div>
 
-        {/* Newsletter Signup Placeholder */}
-        {/*
-          TODO: Wire this form to an email service provider (e.g. Mailchimp, Kit, Beehiiv).
-          Replace the form action and add the appropriate hidden fields when ready.
-        */}
+        {/* Newsletter Signup */}
         <div className="reveal rounded-2xl bg-ocean-600 text-white p-8 md:p-10 text-center">
           <div className="text-4xl mb-4" aria-hidden="true">🌊</div>
           <h3 className="font-serif text-2xl font-bold mb-2">Join the Newsletter</h3>
@@ -71,46 +71,79 @@ export default function Connect() {
             Get updates on new books, author events, and stories from the island — delivered straight to your inbox.
           </p>
 
-          {/* Newsletter form — not yet wired up */}
-          <form
-            className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // TODO: Replace with actual newsletter integration (Mailchimp, Kit, etc.)
-              alert('Newsletter signup coming soon! Follow @pierceinprint on X for updates.');
-            }}
-            aria-label="Newsletter signup form"
-          >
-            <label htmlFor="newsletter-email" className="sr-only">
-              Email address
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              placeholder="your@email.com"
-              required
-              className="
-                flex-1 px-4 py-3 rounded-xl
-                bg-white/15 border border-white/30
-                text-white placeholder-white/50
-                focus:outline-none focus:ring-2 focus:ring-white/50
-                font-sans text-sm
-              "
-            />
-            <button
-              type="submit"
-              className="
-                px-6 py-3 rounded-xl
-                bg-coral-500 hover:bg-coral-600
-                text-white font-semibold text-sm
-                transition-colors shadow-sm
-                whitespace-nowrap
-              "
+          {status === 'success' ? (
+            <p className="font-sans text-white font-medium">You're on the list! Watch your inbox.</p>
+          ) : status === 'already_subscribed' ? (
+            <p className="font-sans text-white/80 font-medium">You're already subscribed.</p>
+          ) : (
+            <form
+              className="flex flex-col sm:flex-row gap-3 max-w-sm mx-auto"
+              onSubmit={async (e) => {
+                e.preventDefault();
+                setStatus('loading');
+                try {
+                  const res = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email }),
+                  });
+                  const data = await res.json();
+                  if (res.ok && data.status === 'subscribed') {
+                    setStatus('success');
+                  } else if (res.ok && data.status === 'already_subscribed') {
+                    setStatus('already_subscribed');
+                  } else {
+                    setStatus('error');
+                  }
+                } catch {
+                  setStatus('error');
+                }
+              }}
+              aria-label="Newsletter signup form"
             >
-              Subscribe
-            </button>
-          </form>
-          <p className="text-xs text-white/40 mt-3">No spam. Unsubscribe anytime.</p>
+              <label htmlFor="newsletter-email" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="newsletter-email"
+                type="email"
+                placeholder="your@email.com"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={status === 'loading'}
+                className="
+                  flex-1 px-4 py-3 rounded-xl
+                  bg-white/15 border border-white/30
+                  text-white placeholder-white/50
+                  focus:outline-none focus:ring-2 focus:ring-white/50
+                  font-sans text-sm
+                  disabled:opacity-60
+                "
+              />
+              <button
+                type="submit"
+                disabled={status === 'loading'}
+                className="
+                  px-6 py-3 rounded-xl
+                  bg-coral-500 hover:bg-coral-600
+                  text-white font-semibold text-sm
+                  transition-colors shadow-sm
+                  whitespace-nowrap
+                  disabled:opacity-60 disabled:cursor-not-allowed
+                "
+              >
+                {status === 'loading' ? 'Subscribing…' : 'Subscribe'}
+              </button>
+            </form>
+          )}
+
+          {status === 'error' && (
+            <p className="font-sans text-white/70 text-sm mt-3">Something went wrong. Please try again.</p>
+          )}
+          {status !== 'success' && status !== 'already_subscribed' && (
+            <p className="text-xs text-white/40 mt-3">No spam. Unsubscribe anytime.</p>
+          )}
         </div>
       </div>
     </section>
