@@ -12,7 +12,7 @@ function iconColorClass(name: string): string {
     case 'amazon':    return 'text-[#FF9900]';
     case 'twitter':   return 'text-black';
     case 'goodreads': return 'text-[#553B08]';
-    case 'art':       return 'text-coral-500';
+    case 'art':       return 'text-ocean-700';
     case 'facebook':  return 'text-[#1877F2]';
     case 'instagram': return 'text-[#E1306C]';
     default:          return 'text-driftwood-500';
@@ -44,7 +44,8 @@ function Icon({ name }: { name: string }) {
       return (
         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="10"/>
-          <path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/>
+          <line x1="2" y1="12" x2="22" y2="12"/>
+          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
         </svg>
       );
     case 'facebook':
