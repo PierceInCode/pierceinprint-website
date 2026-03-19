@@ -24,7 +24,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
             >
-              Rachel's Art
+              Rachel Pierce Art Gallery
             </a>
           </nav>
 

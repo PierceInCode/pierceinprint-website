@@ -6,6 +6,9 @@ import SocialButton from '../ui/SocialButton';
 
 type SubscribeStatus = 'idle' | 'loading' | 'success' | 'already_subscribed' | 'error';
 
+const matthewLinks = socialLinks.filter((l) => l.group === 'matthew');
+const rachelLinks = socialLinks.filter((l) => l.group === 'rachel');
+
 export default function Connect() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [email, setEmail] = useState('');
@@ -54,13 +57,28 @@ export default function Connect() {
           </p>
         </div>
 
-        {/* Social links */}
-        <div className="flex flex-col gap-3 mb-14">
-          {socialLinks.map((link, i) => (
-            <div key={link.id} className={`reveal reveal-delay-${i + 1}`}>
-              <SocialButton link={link} />
+        {/* Social links — two rows by person */}
+        <div className="flex flex-col gap-8 mb-14">
+          <div className="reveal reveal-delay-1">
+            <p className="font-sans text-xs font-semibold tracking-widest uppercase text-driftwood-400 text-center mb-4">
+              Matthew Pierce
+            </p>
+            <div className="flex flex-wrap justify-center gap-8">
+              {matthewLinks.map((link) => (
+                <SocialButton key={link.id} link={link} />
+              ))}
             </div>
-          ))}
+          </div>
+          <div className="reveal reveal-delay-2">
+            <p className="font-sans text-xs font-semibold tracking-widest uppercase text-driftwood-400 text-center mb-4">
+              Rachel Pierce
+            </p>
+            <div className="flex flex-wrap justify-center gap-8">
+              {rachelLinks.map((link) => (
+                <SocialButton key={link.id} link={link} />
+              ))}
+            </div>
+          </div>
         </div>
 
         {/* Newsletter Signup */}
